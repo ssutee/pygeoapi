@@ -81,7 +81,8 @@ METHODS = {
             "params":[
             ('lat', float, []),
             ('lon', float, []),
-            ('radius', int,['optional']),
+            ('radius', str,['optional']),
+            # radius accepted in string format with unit. Eg. 500m or 0.3km
             ('type', str,['optional']),
             ('include_parents', int,['optional']),
             ('limit', int, ['optional']),
@@ -116,6 +117,18 @@ METHODS = {
             #('jsoncallback', int,['optional']),
             ],
             "url": 'lambda params: "%se/%s/keyword-search" % (GEOAPI_URL, params.get("guid"))'}        
+    },
+    'resolve': {
+    	'parents': {
+    		"params":[
+	    	('lat', float, []),
+    		('lon', float, []),
+    		('pretty', int, ['optional']),
+    		# No support for show-geom yet. It would require change to  
+    		# the procies code as hyphens are not allowed in var names.
+     		# ('show-geom', str, ['optional']),
+	    	],
+    		"url": "%sparents" % GEOAPI_URL}
     }
 }
 
